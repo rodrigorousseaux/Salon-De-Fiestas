@@ -13,8 +13,11 @@ El proceso finaliza cuando se ingresa una fecha negativa.
 
 Se pide:
 a. Informar cuantas fiestas hay de cada tipo.
+
 b. La fecha para la cuál se realizará la fiesta con mayor cantidad de personas (suponer único máximo)
+
 c. La fecha de la fiesta con mayor cantidad de menú 1 y la fecha de la fiesta con mayor cantidad de menú 2. (suponer único máximo)
+
 d. El promedio de personas de todas las fiestas.
 
 Nota: Para el punto “b” y “c” las fechas deben ser impresas como DD/MM/YYYY
