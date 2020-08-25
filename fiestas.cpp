@@ -1,142 +1,142 @@
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
-void invertirFechaMenu(int& fechaMenu, float& dia, float& mes, float& anio){
+void invertirFechaMenu(int *fechaMenu, int *dia, int *mes, int *anio){
 
-    anio = fechaMenu / 10000;
-    mes = (fechaMenu % 10000) / 100;
-    dia = fechaMenu % 100;
+    *anio = *fechaMenu / 10000;
+    *mes = (*fechaMenu % 10000) / 100;
+    *dia = *fechaMenu % 100;
 
     return;
 }
 
-void menuMayor(int& cantMenu, int& cantPersonas, int& fechaMenu, int& fecha){
+void menuMayor(int *cantMenu, int *cantPersonas, int *fechaMenu, int *fecha){
 
-    if(cantPersonas > cantMenu){
+    if(*cantPersonas > *cantMenu){
                 
-        cantMenu = cantPersonas;
-        fechaMenu = fecha;
+        *cantMenu = *cantPersonas;
+        *fechaMenu = *fecha;
     }
 
     return;
 }
 
-void elegirMenu(int& fechaMenu1, int& fechaMenu2, int& cantidadMenu1, int& cantidadMenu2, int& cantidad, int& fecha){
+void elegirMenu(int *fechaMenu1, int *fechaMenu2, int *cantidadMenu1, int *cantidadMenu2, int *cantidad, int *fecha){
 
     int opcion;
 
-    cout << "1)Menú 1: " << endl;
-    cout << "2)Menú 2: " << endl;
-    cout << "Que opción de menú quiere?: ";
-    cin >> opcion;
+    printf("1)Menú 1: \n");
+    printf("2)Menú 2: \n");
+    printf("Que opción de menú quiere?: ");
+    scanf("%i", &opcion);
      
     switch(opcion){
 
-        case 1: menuMayor(cantidadMenu1, cantidad, fechaMenu1, fecha);
+        case 1: menuMayor(&*cantidadMenu1, &*cantidad, &*fechaMenu1, &*fecha);
         break;
-        case 2: menuMayor(cantidadMenu2, cantidad, fechaMenu2, fecha);
+        case 2: menuMayor(&*cantidadMenu2, &*cantidad, &*fechaMenu2, &*fecha);
         break;
     }
 
     return;
 }
 
-void invertirFechaPersonas(int& fechaMayorPersonas, float& diaMayorPersonas, float& mesMayorPersonas, float& anioMayorPersonas){
+void invertirFechaPersonas(int *fechaMayorPersonas, int *diaMayorPersonas, int *mesMayorPersonas, int *anioMayorPersonas){
     
-    anioMayorPersonas = fechaMayorPersonas / 10000;
-    mesMayorPersonas = (fechaMayorPersonas % 10000) / 100;
-    diaMayorPersonas = (fechaMayorPersonas % 100);
+    *anioMayorPersonas = *fechaMayorPersonas / 10000;
+    *mesMayorPersonas = (*fechaMayorPersonas % 10000) / 100;
+    *diaMayorPersonas = (*fechaMayorPersonas % 100);
 
     return;
 }
 
-void cantidadDePersonas(int& cantidadMayor, int& fecha, int& fechaMayorPersonas, float& totalPersonas, int& cantidad, int& cantidadFiestas){
+void cantidadDePersonas(int *cantidadMayor, int *fecha, int *fechaMayorPersonas, float *totalPersonas, int *cantidad, int *cantidadFiestas){
     
-    cout << "Ingrese la cantidad de personas que asistirán a la fiesta: ";
-    cin >> cantidad;
+    printf("Ingrese la cantidad de personas que asistirán a la fiesta: ");
+    scanf("%i", &*cantidad);
 
-    if(cantidad > cantidadMayor){
-        cantidadMayor = cantidad;
-        fechaMayorPersonas = fecha;
+    if(*cantidad > *cantidadMayor){
+        *cantidadMayor = *cantidad;
+        *fechaMayorPersonas = *fecha;
     }
 
-    totalPersonas = totalPersonas + cantidad;; 
+    *totalPersonas += *cantidad;
 
-    cantidadFiestas = cantidadFiestas + 1;
+    *cantidadFiestas += 1;
 
     return;
 }
 
-void tipoDeFiesta(int& fiestaC, int& fiestaS, int& fiestaO){
+void tipoDeFiesta(int *fiestaC, int *fiestaS, int *fiestaO){
 
     char tipo;
 
-    cout << "Ingrese el tipo de fiesta a realizar - 'C' - 'S' - 'O': ";
-    cin >> tipo; 
+    printf("Ingrese el tipo de fiesta a realizar - 'C' - 'S' - 'O': ");
+    fflush(stdin);
+    scanf("%c", &tipo); 
 
     if (tipo == 'C'){
-       fiestaC = fiestaC + 1;
+       *fiestaC += 1;
     }
 
     if(tipo == 'S'){
-        fiestaS = fiestaS + 1;
+        *fiestaS += 1;
     }
 
     if(tipo == 'O'){
-        fiestaO = fiestaO + 1;
+        *fiestaO += 1;
     }
 
     return;
 }
 
-int ingresarFecha(int fecha, string mensaje){
+int ingresarFecha(int fecha){
 
-    cout << mensaje;
-    cin >> fecha;
+    printf("Ingrese la fecha de la fiesta (AAAA/MM/DD): ");
+    scanf("%i", &fecha);
 
     return fecha;
 }
 
 int main(){
 
-   int fecha, fechaMayorPersonas = 0, fiestaC = 0, fiestaS = 0, fiestaO = 0, cantidad, cantidadMayor = 0;
+   int fecha, fechaMayorPersonas = 0, fiestaC = 0, fiestaS = 0, fiestaO = 0, cantidad = 0, cantidadMayor = 0;
    int cantidadFiestas = 0;
+   int diaMayorPersonas = 0, mesMayorPersonas = 0, anioMayorPersonas = 0;
    float totalPersonas = 0;
-   int fechaMenu1, fechaMenu2, cantidadMenu1 = 0, cantidadMenu2 = 0;
-   float diaMenu1, mesMenu1, anioMenu1, diaMenu2, mesMenu2, anioMenu2;
-   float diaMayorPersonas, mesMayorPersonas, anioMayorPersonas;
+   int fechaMenu1 = 0, fechaMenu2 = 0, cantidadMenu1 = 0, cantidadMenu2 = 0;
+   int diaMenu1 = 0, mesMenu1 = 0, anioMenu1 = 0, diaMenu2 = 0, mesMenu2 = 0, anioMenu2 = 0;
    float promedioTotalPersonas = 0;
 
-   fecha = ingresarFecha(fecha, "Ingrese la fecha de la fiesta (AAAA/MM/DD): ");
+   fecha = ingresarFecha(fecha);
 
    while(fecha > 0){
 
-       tipoDeFiesta(fiestaC, fiestaS, fiestaO);
+       tipoDeFiesta(&fiestaC, &fiestaS, &fiestaO);
      
-       cantidadDePersonas(cantidadMayor, fecha, fechaMayorPersonas, totalPersonas, cantidad, cantidadFiestas);
+       cantidadDePersonas(&cantidadMayor, &fecha, &fechaMayorPersonas, &totalPersonas, &cantidad, &cantidadFiestas);
 
-       invertirFechaPersonas(fechaMayorPersonas, diaMayorPersonas, mesMayorPersonas, anioMayorPersonas);
+       invertirFechaPersonas(&fechaMayorPersonas, &diaMayorPersonas, &mesMayorPersonas, &anioMayorPersonas);
        
-       elegirMenu(fechaMenu1, fechaMenu2, cantidadMenu1, cantidadMenu2, cantidad, fecha);
+       elegirMenu(&fechaMenu1, &fechaMenu2, &cantidadMenu1, &cantidadMenu2, &cantidad, &fecha);
 
-       cout << endl;
+       printf("\n");
 
-       fecha = ingresarFecha(fecha, "Ingrese la fecha de la fiesta (AAAA/MM/DD): ");
+       fecha = ingresarFecha(fecha);
     }
 
-    invertirFechaMenu(fechaMenu1, diaMenu1, mesMenu1, anioMenu1);
-    invertirFechaMenu(fechaMenu2, diaMenu2, mesMenu2, anioMenu2);
+    invertirFechaMenu(&fechaMenu1, &diaMenu1, &mesMenu1, &anioMenu1);
+    invertirFechaMenu(&fechaMenu2, &diaMenu2, &mesMenu2, &anioMenu2);
 
     promedioTotalPersonas = (totalPersonas / cantidadFiestas);
 
-    cout << endl;
-    cout << "Total de fiestas C: " << fiestaC << endl;
-    cout << "Total de fiestas S: " << fiestaS << endl;
-    cout << "Total de fiestas O: " << fiestaO << endl;
-    cout << "La fiesta con mayor cantidad de personas es el: " << diaMayorPersonas << "/" << mesMayorPersonas << "/" << anioMayorPersonas << endl;
-    cout << "La fiesta con mayor cantidad de menu 1 es el: " << diaMenu1 << "/" << mesMenu1 << "/" << anioMenu1 << endl;
-    cout << "La fiesta con mayor cantidad de menu 2 es el: " << diaMenu2 << "/" << mesMenu2 << "/" << anioMenu2 << endl;
-    cout << "El promedio de personas es de " << promedioTotalPersonas << " personas por fiesta" << endl;
+    printf("\n");
+    printf("Total de fiestas C: %d\n", fiestaC);
+    printf("Total de fiestas S: %d\n", fiestaS);
+    printf("Total de fiestas O: %d\n", fiestaO);
+    printf("La fiesta con mayor cantidad de personas es el: %d/%d/%d\n", diaMayorPersonas, mesMayorPersonas, anioMayorPersonas);
+    printf("La fiesta con mayor cantidad de menu 1 es el: %d/%d/%d\n", diaMenu1, mesMenu1, anioMenu1);
+    printf("La fiesta con mayor cantidad de menu 2 es el: %d/%d/%d\n", diaMenu2, mesMenu2, anioMenu2);
+    printf("El promedio de personas por fiesta es de:  %f\n", promedioTotalPersonas);
 
     return 0;
 }
